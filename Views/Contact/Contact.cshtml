@@ -1,0 +1,11 @@
+﻿@model CST465TermProject.Models.ContactModel
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+@{
+}
+
+<p><em>Name:</em> @Html.DisplayFor(modelItem => Model.Name)</p>
+<p><em>Phone Number:</em> @Html.DisplayFor(modelItem => Model.PhoneNumber)</p>
+<p><em>Email:</em> @Html.DisplayFor(modelItem => Model.Email)</p>
+<p><em>Message:</em> @Html.DisplayFor(modelItem => Model.Message)</p>
