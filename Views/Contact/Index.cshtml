@@ -1,19 +1,35 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model CST465TermProject.Models.ContactModel
 @{
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
-
-@using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
-{
-<label>Name:</label><br />
-<input required type="text" name="Name" /><br />
-<label>Phone Number:</label><br />
-<input required type="text" name="PhoneNumber" /><br />
-<label>Email:</label><br />
-<input required type="text" name="Email" /><br />
-<label>Message:</label><br />
-<textarea required name="Message" rows="10" cols="40"></textarea><br />
-<button type="submit">Submit</button>
-}
+<div class="container">
+    <div class="row" style="margin-left:50px; width: 50%;">
+        @using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
+        {
+            <div class="form-group row">
+                @Html.LabelFor(m => Model.Name)
+                @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => Model.Name)
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => Model.PhoneNumber)
+                @Html.TextBoxFor(m => Model.PhoneNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => Model.PhoneNumber)
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => Model.Email)
+                @Html.TextBoxFor(m => Model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => Model.Email)
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => Model.Message)
+                @Html.TextAreaFor(m => Model.Message, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => Model.Message)
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        }
+    </div>
+</div>

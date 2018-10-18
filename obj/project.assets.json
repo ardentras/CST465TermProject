@@ -5170,7 +5170,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.1": {
-      "sha512": "f8PKGcxiezL1RVqmnmrazj24Mj4KCTSXqwdotl7Lc+82h8iLV7ItxEIShTJakG7M9iw0ZuCocM0J/IhYesdQrg==",
+      "sha512": "BOK5fckW9v7xWjpEI6bPGwkjw10OPVASZcAa8HoWJo/0Mmg4Azddj92v8noU+YgvD/6zNZ9o/RiRXXKxk5rYwQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.design/2.1.1",
       "files": [
@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\CST465TermProject\\CST465TermProject.csproj",
+      "projectUniqueName": "C:\\Users\\shaun.rasmusen\\Documents\\CST465TermProject\\CST465TermProject.csproj",
       "projectName": "CST465TermProject",
-      "projectPath": "Z:\\CST465TermProject\\CST465TermProject.csproj",
+      "projectPath": "C:\\Users\\shaun.rasmusen\\Documents\\CST465TermProject\\CST465TermProject.csproj",
       "packagesPath": "C:\\Users\\shaun.rasmusen\\.nuget\\packages\\",
-      "outputPath": "Z:\\CST465TermProject\\obj\\",
+      "outputPath": "C:\\Users\\shaun.rasmusen\\Documents\\CST465TermProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

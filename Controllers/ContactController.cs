@@ -16,6 +16,7 @@ namespace CST465TermProject.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Contact(string Name, string PhoneNumber, string Email, string Message)
         {
             Models.ContactModel model = new Models.ContactModel();
