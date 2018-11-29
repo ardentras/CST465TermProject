@@ -1,0 +1,105 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using final;
+@{ SiteSettings settings = ViewBag.SiteSettings;}
+@model List<final.Models.SavedItem>
+
+
+<h1>Vault</h1>
+
+<a class="btn btn-success vault-create" asp-controller="Vault" asp-action="Create">Create New Item</a>
+
+<div class="vault-list">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Type</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if (settings.maxDisplayVaultObjects < Model.Count && item == Model[settings.maxDisplayVaultObjects])
+                {
+                    break;
+                }
+                <tr>
+                    @if (item.ToString() == "final.Models.Note")
+                    {
+                        <td width="10%">
+                            @if (settings.allowDeleteItem)
+                            {
+                                <form asp-action="Delete" asp-controller="Note">
+                                    @Html.AntiForgeryToken()
+                                    <input hidden value="@item.ID" name="ID" />
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            }
+                        </td>
+                        <td width="10%">
+                            <form asp-action="Index" asp-controller="Note">
+                                @Html.AntiForgeryToken()
+                                <input hidden value="@item.ID" name="ID" />
+                                <button class="btn btn-primary">View</button>
+                            </form>
+                        </td>
+                        <td width="10%">
+                            @Html.Raw("Note")
+                        </td>
+                    }
+                    else if (item.ToString() == "final.Models.Password")
+                    {
+                        <td width="10%">
+                            @if (settings.allowDeleteItem)
+                            {
+                                <form asp-action="Delete" asp-controller="Password">
+                                    @Html.AntiForgeryToken()
+                                    <input hidden value="@item.ID" name="ID" />
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            }
+                        </td>
+                        <td width="10%">
+                            <form asp-action="Index" asp-controller="Password">
+                                <input hidden value="@item.ID" name="ID" />
+                                <button class="btn btn-primary">View</button>
+                            </form>
+                        </td>
+                        <td width="15%">
+                            @Html.Raw("Password")
+                        </td>
+                    }
+                    else if (item.ToString() == "final.Models.Website")
+                    {
+                        <td width="10%">
+                            @if (settings.allowDeleteItem)
+                            {
+                                <form asp-action="Delete" asp-controller="Website">
+                                    @Html.AntiForgeryToken()
+                                    <input hidden value="@item.ID" name="ID" />
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            }
+                        </td>
+                        <td width="10%">
+                            <form asp-action="Index" asp-controller="Website">
+                                <input hidden value="@item.ID" name="ID" />
+                                <button class="btn btn-primary">View</button>
+                            </form>
+                        </td>
+                        <td width="15%">
+                            @Html.Raw("Website")
+                        </td>
+                    }
+                    <td>
+                        @item.Name
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

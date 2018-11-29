@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model  final.Models.Website
+
+<h2>Edit Website</h2>
+
+<a class="btn btn-info" asp-controller="Vault" asp-action="Index">&larr; Go back</a>
+
+<div class="edit-form">
+    <strong>Website</strong>
+
+    <form asp-controller="Website" asp-action="Update">
+        @Html.AntiForgeryToken()
+        <input hidden asp-for="ID" value="@Model.ID" />
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name"></span><br />
+        <label asp-for="URL"></label>
+        <input asp-for="URL" class="form-control" />
+        <span asp-validation-for="URL"></span><br />
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username"></span><br />
+        <label asp-for="PasswordValue"></label>
+        <input asp-for="PasswordValue" class="form-control" />
+        <span asp-validation-for="PasswordValue"></span><br />
+        <input hidden asp-for="Tab" value="2" />
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

@@ -1,0 +1,67 @@
+﻿body .body-section {
+    width: 90%;
+    margin: auto;
+}
+
+div.edit-form {
+    width: 30%;
+    margin-top: 10px;
+}
+
+div.role-manage {
+    width: 75%;
+}
+
+div.user-manage {
+    width: 75%;
+}
+
+.vault.item-type {
+    width: 30%;
+    margin-top: 10px;
+}
+
+.vault.item-type em {
+    font-size: 1.25em;
+}
+
+.vault.item-type strong {
+    font-size: 1.2em;
+}
+
+.vault.item-type create-form {
+    background-color: #808080;
+    width: 20%;
+}
+
+.vault-list {
+    margin-top: 10px;
+}
+
+#vault-form {
+    margin-top: 10px;
+}
+
+.saveditem-display {
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #ddd;
+    width: 50%;
+}
+
+.saveditem-display span.password-disp {
+    font-family: monospace;
+}
+
+.saveditem-display div.text-wrap {
+    padding-left: 20px;
+}
+
+.saveditem-display div.text-wrap span.text {
+    white-space: pre-line;
+}
+
+.back-btn {
+    margin-right: 10px;
+}

@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@*Javascript verification doesn't work without this here for some reason*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.js"></script>
+
+@model final.Models.Note
+
+<div id="note-partial" class="create-form card">
+    <h4 class="card-title"><strong>Note</strong></h4>
+    <div class="card-body">
+        <form asp-controller="Vault" asp-action="CreateNote">
+            @Html.AntiForgeryToken()
+            <em><label asp-for="Name"></label></em>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span><br />
+            <em><label asp-for="Text"></label></em>
+            <textarea rows="10" asp-for="Text" class="form-control"></textarea>
+            <span asp-validation-for="Text"></span><br />
+            <input hidden asp-for="Tab" value="0" />
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model final.Models.SavedItem
+
+<h1>Vault</h1>
+
+<h2>Create New Item</h2>
+
+<a class="btn btn-info" asp-controller="Vault" asp-action="Index">&larr; Go back</a>
+
+<div class="vault item-type">
+    <div>
+        <em>Type:</em>
+        <button type="button" id="note-btn" class="btn btn-default">Note</button>
+        <button type="button" id="password-btn" class="btn btn-default">Password</button>
+        <button type="button" id="website-btn" class="btn btn-default">Website</button>
+    </div>
+    <div id="vault-form">
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+    @if (Model != null)
+    {
+        @switch (Model.Tab)
+        {
+            case 0:
+                @Html.Raw(@"$('#note-btn').removeClass('btn-default');")
+                @Html.Raw(@"$('#note-btn').addClass('btn-primary');")
+                @Html.Raw(@"$('#vault-form').load('/Vault/GetNote');");
+                break;
+            case 1:
+                @Html.Raw(@"$('#password-btn').removeClass('btn-default');")
+                @Html.Raw(@"$('#password-btn').addClass('btn-primary');")
+                @Html.Raw(@"$('#vault-form').load('/Vault/GetPassword');");
+                break;
+            case 2:
+                @Html.Raw(@"$('#website-btn').removeClass('btn-default');")
+                @Html.Raw(@"$('#website-btn').addClass('btn-primary');")
+                @Html.Raw(@"$('#vault-form').load('/Vault/GetWebsite');");
+                break;
+            default:
+                break;
+        }
+        }
+    });
+    function removeBtnClasses() {
+        $('.btn').removeClass('btn-default');
+        $('.btn').removeClass('btn-primary');
+    }
+    $('#note-btn').click(function () {
+            removeBtnClasses();
+        $('#note-btn').addClass('btn-primary');
+        $('#password-btn').addClass('btn-default');
+        $('#website-btn').addClass('btn-default');
+        $('#vault-form').load('@Url.Action("GetNote", "Vault")');
+    })
+    $('#password-btn').click(function () {
+            removeBtnClasses();
+        $('#password-btn').addClass('btn-primary');
+        $('#note-btn').addClass('btn-default');
+        $('#website-btn').addClass('btn-default');
+        $('#vault-form').load('@Url.Action("GetPassword", "Vault")');
+    })
+    $('#website-btn').click(function () {
+            removeBtnClasses();
+        $('#website-btn').addClass('btn-primary');
+        $('#password-btn').addClass('btn-default');
+        $('#note-btn').addClass('btn-default');
+        $('#vault-form').load('@Url.Action("GetWebsite", "Vault")');
+    })
+</script>

@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using final.Areas.Identity.Data;
+@inject RoleManager<IdentityRole> RoleManager
+@inject UserManager<finalUser> UserManager
+@model IdentityRole
+
+<h1>Admin Console</h1>
+
+<h2>Roles</h2>
+<div class="role-manage">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Role Name</th>
+                <th>User Management</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var role in RoleManager.Roles)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td>
+                        <form asp-action="AddRole" asp-controller="Admin">
+                            @Html.AntiForgeryToken()
+                            <input type="text" asp-for="NormalizedName" />
+                            <input type="text" hidden asp-for="Name" value="@role.Name" />
+                            <button class="btn btn-primary">Add Role to User</button>
+                        </form>
+                        <form asp-action="RemoveRole" asp-controller="Admin">
+                            @Html.AntiForgeryToken()
+                            <input type="text" asp-for="NormalizedName" />
+                            <input type="text" hidden asp-for="Name" value="@role.Name" />
+                            <button class="btn btn-danger">Remove Role from User</button>
+                        </form>
+                    </td>
+                    <td width="10%">
+                        <form asp-action="DeleteRole" asp-controller="Admin">
+                            @Html.AntiForgeryToken()
+                            <input hidden asp-for="Id" value="@role.Id" />
+                            <button class="btn btn-danger">Delete Role</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3>Create New Role</h3>
+    <form asp-action="CreateRole" asp-controller="Admin">
+        @Html.AntiForgeryToken()
+        <label class="control-label" asp-for="Name">Role Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+        <button class="btn btn-default">Create</button>
+    </form>
+</div>

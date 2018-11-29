@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model final.Models.Note
+
+<h1>View Note</h1>
+<div class="btn-group" role="group">
+    <a class="btn btn-info back-btn" asp-controller="Vault" asp-action="Index">&larr; Go back</a>
+
+    <form asp-action="Edit" asp-controller="Note">
+        <input hidden value="@Model.ID" asp-for="ID" />
+        <button type="submit" class="btn btn-warning">Edit</button>
+    </form>
+</div>
+<div class="saveditem-display">
+    <strong>Name:</strong> @Model.Name<br />
+    <strong>Text:</strong>
+    <div class="text-wrap">
+        <span class="text">@Model.Text</span>
+    </div>
+</div>

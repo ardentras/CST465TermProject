@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using final.Areas.Identity.Data;
+@using final;
+@{ SiteSettings settings = ViewBag.SiteSettings;}
+@inject RoleManager<IdentityRole> RoleManager
+@inject UserManager<finalUser> UserManager
+@model finalUser
+
+<h1>Admin Console</h1>
+
+<h2>Users</h2>
+<div class="user-manage">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">User</th>
+                <th>User Roles</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in UserManager.Users)
+            {
+                <tr>
+                    <td width="30%">@user.UserName</td>
+                    <td>
+                        @foreach (var role in UserManager.GetRolesAsync(user).Result)
+                        {
+                            @role
+                            if (@role != UserManager.GetRolesAsync(user).Result.Last())
+                            {
+                                @Html.Raw(", ")
+                            }
+                        }
+                    </td>
+                    <td width="10%">
+                        <a asp-action="Roles" class="btn btn-success">Manage Roles</a>
+                    </td>
+                    <td width="10%">
+                        @if (settings.allowDeleteUser && User.Identity.Name != user.UserName)
+                        {
+                            <form asp-action="DeleteUser" asp-controller="Admin">
+                                @Html.AntiForgeryToken()
+                                <input hidden asp-for="Id" value="@user.Id" />
+                                <button class="btn btn-danger">Delete User</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
