@@ -59,7 +59,10 @@ namespace final.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateRole(IdentityRole role)
         {
-            var temp = role_manager.CreateAsync(role).Result;
+            if (role != null)
+            {
+                var temp = role_manager.CreateAsync(role).Result;
+            }
 
             return RedirectToAction("Roles");
         }
@@ -68,7 +71,11 @@ namespace final.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteRole(IdentityRole role)
         {
-            var temp = role_manager.DeleteAsync(role_manager.FindByIdAsync(role.Id).Result);
+            var _role = role_manager.FindByIdAsync(role.Id).Result;
+            if (_role != null)
+            {
+                var temp = role_manager.DeleteAsync(_role);
+            }
 
             return RedirectToAction("Roles");
         }
@@ -77,7 +84,11 @@ namespace final.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddRole(IdentityRole role)
         {
-            var temp = user_manager.AddToRoleAsync(user_manager.FindByNameAsync(role.NormalizedName).Result, role.Name).Result;
+            var user = user_manager.FindByNameAsync(role.NormalizedName).Result;
+            if (user != null)
+            {
+                var temp = user_manager.AddToRoleAsync(user, role.Name).Result;
+            }
 
             return RedirectToAction("Roles");
         }
@@ -86,7 +97,11 @@ namespace final.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult RemoveRole(IdentityRole role)
         {
-            var temp = user_manager.RemoveFromRoleAsync(user_manager.FindByNameAsync(role.NormalizedName).Result, role.Name).Result;
+            var user = user_manager.FindByNameAsync(role.NormalizedName).Result;
+            if (user != null)
+            {
+                var temp = user_manager.RemoveFromRoleAsync(user, role.Name).Result;
+            }
 
             return RedirectToAction("Roles");
         }

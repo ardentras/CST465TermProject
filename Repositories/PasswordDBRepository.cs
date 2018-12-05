@@ -9,6 +9,7 @@ using System.IO;
 using final.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Caching.Memory;
+using System.Text;
 
 namespace final.Repositories
 {
@@ -67,6 +68,7 @@ namespace final.Repositories
 
         public void Insert(Password item)
         {
+            item.PasswordValue = Convert.ToBase64String(Encoding.ASCII.GetBytes(item.PasswordValue));
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 using (SqlCommand cmd = new SqlCommand("Password_Insert", conn))
@@ -86,6 +88,7 @@ namespace final.Repositories
 
         public void Update(Password item)
         {
+            item.PasswordValue = Convert.ToBase64String(Encoding.ASCII.GetBytes(item.PasswordValue));
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 using (SqlCommand cmd = new SqlCommand("Password_Update", conn))

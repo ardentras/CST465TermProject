@@ -25,5 +25,5 @@
         <a href="https://@Model.URL">@Model.URL</a><br />
     }
     <strong>Username: </strong>@Model.Username<br />
-    <strong>Password: </strong><span class="password-disp">@Model.PasswordValue</span><br />
+    <strong>Password: </strong><span class="password-disp">@System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(Model.PasswordValue))</span><br />
 </div>
