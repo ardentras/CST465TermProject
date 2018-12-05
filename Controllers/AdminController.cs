@@ -59,6 +59,7 @@ namespace final.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateRole(IdentityRole role)
         {
+
             if (role != null)
             {
                 var temp = role_manager.CreateAsync(role).Result;

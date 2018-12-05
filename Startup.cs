@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using final.Repositories;
@@ -24,14 +25,20 @@ namespace final
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMemoryCache();
-            services.AddMvc();
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-            services.Configure<SiteSettings>(Configuration);
+            var configuration = builder.Build();
+
+            services.AddMemoryCache();
+
+            services.Configure<SiteSettings>(configuration);
             services.Configure<DatabaseSettings>(Configuration);
             services.AddTransient<INoteRepository, NoteDBRepository>();
             services.AddTransient<IPasswordRepository, PasswordDBRepository>();
             services.AddTransient<IWebsiteRepository, WebsiteDBRepository>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
